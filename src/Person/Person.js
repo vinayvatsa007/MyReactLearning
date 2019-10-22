@@ -19,9 +19,15 @@ import Radium from 'radium';
 // }
 
 const person = (props)=>{
+    const overridStyle = {
+    '@media (min-width: 500px)':{
+        width:'300px'
+    }
+    };
     return(
         //<div>i am a {props.name} and age:{Math.floor(Math.random()*30)}</div>
-    <div className="Person">
+        // 2 styles here via class name and style -  overrideStyle will override class css
+    <div className="Person" style={overridStyle}>
         <p onClick={props.click}>i am a {props.name} and age:{props.age}</p>
         <p>{props.children}</p>
         <input type="text" onChange={props.changed} value={props.name} />

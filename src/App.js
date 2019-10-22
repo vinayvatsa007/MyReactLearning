@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import Person from './Person/Person';
-import  Radium from 'radium';
+import  Radium, {StyleRoot} from 'radium';
 // function App() {
 //   return (//     <div className="App"> <h1>Hi</h1> </div>//   );
 // }
@@ -126,19 +126,21 @@ class App extends Component{
     }
 
        return (
-           <div className="App">
-             <h1>Header</h1>
-             <p className={conditionalClassesToBeApplied.join(' ')}>Paragraph</p>
-             {/*<button style={style}*/}
-                 {/*onClick={this.switchNameHandler.bind(this,'Vinay1')}>Switch Name</button>*/}
-             {/*/!*another way of passing parameter to function call by passing a annonymous function instead of func reference*!/*/}
-             {/*<button style={style}*/}
-                     {/*onClick={()=>this.switchNameHandler('Vinay3')}>Switch Name2</button>*/}
-               <button style={style}
-                       onClick={this.togglePersonsHandler}>Toggle Person Handler</button>
-               {persons}
-           </div>
-
+           //wrap entire application in styleroot
+           <StyleRoot>
+               <div className="App">
+                 <h1>Header</h1>
+                 <p className={conditionalClassesToBeApplied.join(' ')}>Paragraph</p>
+                 {/*<button style={style}*/}
+                     {/*onClick={this.switchNameHandler.bind(this,'Vinay1')}>Switch Name</button>*/}
+                 {/*/!*another way of passing parameter to function call by passing a annonymous function instead of func reference*!/*/}
+                 {/*<button style={style}*/}
+                         {/*onClick={()=>this.switchNameHandler('Vinay3')}>Switch Name2</button>*/}
+                   <button style={style}
+                           onClick={this.togglePersonsHandler}>Toggle Person Handler</button>
+                   {persons}
+               </div>
+           </StyleRoot>
        );
    }
 }
