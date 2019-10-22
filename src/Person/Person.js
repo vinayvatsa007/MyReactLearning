@@ -19,7 +19,12 @@ import './Person.css';
 // }
 
 const person = (props)=>{
-
+    const rnd = Math.random();
+    console.log(rnd);
+    if(rnd>.9)
+    {
+        throw new Error('something went wrong - rnd>.7');
+    }
     return(
         //<div>i am a {props.name} and age:{Math.floor(Math.random()*30)}</div>
         // 2 styles here via class name and style -  overrideStyle will override class css

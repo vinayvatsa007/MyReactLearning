@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import Person from './Person/Person';
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 
 // function App() {
 //   return (//     <div className="App"> <h1>Hi</h1> </div>//   );
@@ -29,18 +30,10 @@ class App extends Component{
           {name:'Person33' , age:29, gender:'femaile'},
           ]
       });
-
-      // const newState = {
-      //     persons: [
-      //         {name:'Person111' , age:28, gender:'maile'},
-      //         {name:'Person222' , age:29 , gender:'maile'},
-      //         {name:'Person333' , age:29, gender:'femaile'},
-      //     ]
-      // };
-      // this.setState(newState);
   }
 
   nameChangedHandler = (event,id)=>{
+
       const personIndex = this.state.persons.findIndex(p => {
           return p.id ===id;
       })
@@ -88,14 +81,14 @@ class App extends Component{
         persons = (
         <div>
             {this.state.persons.map((person,index) =>{
-                return <Person
+                return <ErrorBoundary key = {person.id}> <Person
                     name = {person.name}
                     age = {person.age}
                     gender = {person.gender}
                     click = {()=> this.deletePersonHandler(index)}
-                    key = {person.id}
+
                     changed = {(event)=>this.nameChangedHandler(event,person.id)}
-                />
+                /></ErrorBoundary>
                 //person.id available here since were are in map method which hold individual person
             })}
 
@@ -116,18 +109,10 @@ class App extends Component{
         conditionalClassesToBeApplied.push('bold'); // =['red','bold']
         console.log(conditionalClassesToBeApplied);
     }
-
        return (
-           //wrap entire application in styleroot
-
                <div className="App">
                  <h1>Header</h1>
                  <p className={conditionalClassesToBeApplied.join(' ')}>Paragraph</p>
-                 {/*<button style={style}*/}
-                     {/*onClick={this.switchNameHandler.bind(this,'Vinay1')}>Switch Name</button>*/}
-                 {/*/!*another way of passing parameter to function call by passing a annonymous function instead of func reference*!/*/}
-                 {/*<button style={style}*/}
-                         {/*onClick={()=>this.switchNameHandler('Vinay3')}>Switch Name2</button>*/}
                    <button style={style}
                            onClick={this.togglePersonsHandler}>Toggle Person Handler</button>
                    {persons}
