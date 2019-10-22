@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import Person from './Person/Person';
-import  Radium, {StyleRoot} from 'radium';
+
 // function App() {
 //   return (//     <div className="App"> <h1>Hi</h1> </div>//   );
 // }
@@ -80,11 +80,7 @@ class App extends Component{
         font:'inherit',
         border: '1px solid blue',
         padding:'8px',
-        cursor:'pointer',
-        ':hover':{
-          backgroundColor:'lightgreen',
-            color:'black'
-        }
+        cursor:'pointer'
     };
     let persons = null;
     if (this.state.showPersons)
@@ -106,10 +102,6 @@ class App extends Component{
         </div>
         );
         style.backgroundColor = 'red';
-        style[':hover']={
-        backgroundColor:'salmon',
-            color:'black'
-    }
     }
 
     //const conditionalClassesToBeApplied = ['red','bold'].join(' ');
@@ -127,7 +119,7 @@ class App extends Component{
 
        return (
            //wrap entire application in styleroot
-           <StyleRoot>
+
                <div className="App">
                  <h1>Header</h1>
                  <p className={conditionalClassesToBeApplied.join(' ')}>Paragraph</p>
@@ -140,8 +132,8 @@ class App extends Component{
                            onClick={this.togglePersonsHandler}>Toggle Person Handler</button>
                    {persons}
                </div>
-           </StyleRoot>
+
        );
    }
 }
-export default Radium(App);
+export default App;
