@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import Person from './Person/Person';
+import  Radium from 'radium';
 // function App() {
 //   return (//     <div className="App"> <h1>Hi</h1> </div>//   );
 // }
@@ -74,11 +75,16 @@ class App extends Component{
    render(){
     // pass in quotes because its in js not css
     const style = {
-      backgroundColor:'white',
+      backgroundColor:'green',
+        color:'white',
         font:'inherit',
         border: '1px solid blue',
         padding:'8px',
-        cursor:'pointer'
+        cursor:'pointer',
+        ':hover':{
+          backgroundColor:'lightgreen',
+            color:'black'
+        }
     };
     let persons = null;
     if (this.state.showPersons)
@@ -99,16 +105,35 @@ class App extends Component{
 
         </div>
         );
+        style.backgroundColor = 'red';
+        style[':hover']={
+        backgroundColor:'salmon',
+            color:'black'
     }
+    }
+
+    //const conditionalClassesToBeApplied = ['red','bold'].join(' ');
+    const conditionalClassesToBeApplied = [];
+    if(this.state.persons.length<=2)
+    {
+        conditionalClassesToBeApplied.push('red'); // =['red']
+        console.log(conditionalClassesToBeApplied);
+    }
+    if(this.state.persons.length<=1)
+    {
+        conditionalClassesToBeApplied.push('bold'); // =['red','bold']
+        console.log(conditionalClassesToBeApplied);
+    }
+
        return (
            <div className="App">
              <h1>Header</h1>
-             <p>Paragraph</p>
-             <button style={style}
-                 onClick={this.switchNameHandler.bind(this,'Vinay1')}>Switch Name</button>
-             {/*another way of passing parameter to function call by passing a annonymous function instead of func reference*/}
-             <button style={style}
-                     onClick={()=>this.switchNameHandler('Vinay3')}>Switch Name2</button>
+             <p className={conditionalClassesToBeApplied.join(' ')}>Paragraph</p>
+             {/*<button style={style}*/}
+                 {/*onClick={this.switchNameHandler.bind(this,'Vinay1')}>Switch Name</button>*/}
+             {/*/!*another way of passing parameter to function call by passing a annonymous function instead of func reference*!/*/}
+             {/*<button style={style}*/}
+                     {/*onClick={()=>this.switchNameHandler('Vinay3')}>Switch Name2</button>*/}
                <button style={style}
                        onClick={this.togglePersonsHandler}>Toggle Person Handler</button>
                {persons}
@@ -117,4 +142,4 @@ class App extends Component{
        );
    }
 }
-export default App;
+export default Radium(App);

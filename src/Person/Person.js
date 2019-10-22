@@ -2,8 +2,8 @@
  * Created by Vinay.Sharma on 10/20/2019.
  */
 import React,{Component} from 'react';
-import './Person.css'
-
+import './Person.css';
+import Radium from 'radium';
 // function person() {
 //     return(
 //         <div>person comp</div>
@@ -28,4 +28,6 @@ const person = (props)=>{
     </div>
     );
 }
-export default person;
+export default Radium(person);
+// export default person;
+
