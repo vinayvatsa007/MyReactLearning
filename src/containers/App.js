@@ -4,15 +4,25 @@ import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component{
-  state = {
-    persons: [
-        {id:'p1', name:'Person1' , age:28, gender:'male'},
-        {id:'p2', name:'Person2' , age:29 , gender:'male'},
-        {id:'p3', name:'Person3' , age:29, gender:'female'},
-    ],
-      otherState:'some other value',
-      showPersons: false
-  }
+    constructor(props){
+        super(props);
+        console.log('[App.js] inside constructor', props);
+        this.state = {
+            persons: [
+                {id:'p1', name:'Person1' , age:28, gender:'male'},
+                {id:'p2', name:'Person2' , age:29 , gender:'male'},
+                {id:'p3', name:'Person3' , age:29, gender:'female'},
+            ],
+            otherState:'some other value',
+            showPersons: false
+        };
+    }
+    componentWillMount(){
+        console.log('[App.js] inside componentWillMount');
+    }
+    componentDidMount(){
+        console.log('[App.js] inside componentDidMount');
+    }
 
   switchNameHandler = (newName)=>{
     console.log('button clicked');
@@ -57,7 +67,8 @@ class App extends Component{
       this.setState({persons:persons});
     }
    render(){
-    // pass in quotes because its in js not css
+       console.log('[App.js] inside render');
+   // pass in quotes because its in js not css
     const style = {
       backgroundColor:'green',
         color:'white',
