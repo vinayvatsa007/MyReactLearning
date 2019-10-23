@@ -1,11 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
-import Person from './Person/Person';
-import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
-
-// function App() {
-//   return (//     <div className="App"> <h1>Hi</h1> </div>//   );
-// }
+import Persons from '../components/Persons/Persons';
+import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component{
   state = {
@@ -20,9 +16,6 @@ class App extends Component{
 
   switchNameHandler = (newName)=>{
     console.log('button clicked');
-    //   this.state.persons[0].name = 'Vinay'; // this is not how states manipulated
-    //   const newState = {...this.state,persons:[0].name = 'Vinay'}
-
     this.setState({
         persons: [
           {name:newName , age:28, gender:'maile'},
@@ -31,9 +24,7 @@ class App extends Component{
           ]
       });
   }
-
   nameChangedHandler = (event,id)=>{
-
       const personIndex = this.state.persons.findIndex(p => {
           return p.id ===id;
       })
@@ -79,43 +70,22 @@ class App extends Component{
     if (this.state.showPersons)
     {
         persons = (
-        <div>
-            {this.state.persons.map((person,index) =>{
-                return <ErrorBoundary key = {person.id}> <Person
-                    name = {person.name}
-                    age = {person.age}
-                    gender = {person.gender}
-                    click = {()=> this.deletePersonHandler(index)}
-
-                    changed = {(event)=>this.nameChangedHandler(event,person.id)}
-                /></ErrorBoundary>
-                //person.id available here since were are in map method which hold individual person
-            })}
-
-        </div>
+            <div>
+                <Persons
+                persons = {this.state.persons}
+                clicked = {this.deletePersonHandler}
+                changed = {this.nameChangedHandler}
+                />
+            </div>
         );
         style.backgroundColor = 'red';
     }
 
-    //const conditionalClassesToBeApplied = ['red','bold'].join(' ');
-    const conditionalClassesToBeApplied = [];
-    if(this.state.persons.length<=2)
-    {
-        conditionalClassesToBeApplied.push('red'); // =['red']
-        console.log(conditionalClassesToBeApplied);
-    }
-    if(this.state.persons.length<=1)
-    {
-        conditionalClassesToBeApplied.push('bold'); // =['red','bold']
-        console.log(conditionalClassesToBeApplied);
-    }
+
        return (
                <div className="App">
-                 <h1>Header</h1>
-                 <p className={conditionalClassesToBeApplied.join(' ')}>Paragraph</p>
-                   <button style={style}
-                           onClick={this.togglePersonsHandler}>Toggle Person Handler</button>
-                   {persons}
+                   <Cockpit persons={this.state.persons} clicked ={this.togglePersonsHandler} style={style} />
+                 {persons}
                </div>
 
        );
