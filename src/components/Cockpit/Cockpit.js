@@ -15,7 +15,7 @@ const cockpit = (props) => {
 
     return (
     <div>
-        <h1>Header</h1>
+        <h1>{props.appTitle}</h1>
         <p className={conditionalClassesToBeApplied.join(' ')}>Paragraph</p>
         {/*<button style={style}*/}
         <button  style={props.style} onClick= {props.clicked}>Toggle Person Handler</button>
