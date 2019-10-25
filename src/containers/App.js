@@ -66,6 +66,11 @@ class App extends Component{
       persons.splice(personIndex,1);
       this.setState({persons:persons});
     }
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log('[App.js] inside shouldComponetUpdate - ', nextProps, nextState);
+        return true;
+    }
+
    render(){
        console.log('[App.js] inside render');
    // pass in quotes because its in js not css
