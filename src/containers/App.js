@@ -66,9 +66,20 @@ class App extends Component{
       persons.splice(personIndex,1);
       this.setState({persons:persons});
     }
+
+
     shouldComponentUpdate(nextProps, nextState) {
         console.log('[App.js] inside shouldComponetUpdate - ', nextProps, nextState);
         return true;
+        //return nextProps.persons !== this.props.persons; // will cancel processing
+    }
+    componentWillUpdate(nextProps, nextState){
+        console.log('[App.js] inside componentWillUpdate - ', nextProps.persons, nextState, this.props.persons);
+        return nextProps.persons !== this.props.persons;
+    }
+    componentDidUpdate(){
+        console.log('[App.js] inside componentDidUpdate - ', this.props.persons);
+
     }
 
    render(){
