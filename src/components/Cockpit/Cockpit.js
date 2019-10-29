@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Aux from '../../hoc/Auxiliary';
+
 const cockpit = (props) => {
     const conditionalClassesToBeApplied = [];
     if(props.persons.length<=2)
@@ -13,14 +15,19 @@ const cockpit = (props) => {
         console.log(conditionalClassesToBeApplied);
     }
 
+    {/*<div>*/}
+        {/*<h1>{props.appTitle}</h1>*/}
+        {/*<p className={conditionalClassesToBeApplied.join(' ')}>Paragraph</p>*/}
+        {/*<button  style={props.style} onClick= {props.clicked}>Toggle Person Handler</button>*/}
+    {/*</div>*/}
     return (
-    <div>
+        // instead of wrapping in  div we can wrap our html elements in HOC, will not give error
+    <Aux>
         <h1>{props.appTitle}</h1>
         <p className={conditionalClassesToBeApplied.join(' ')}>Paragraph</p>
-        {/*<button style={style}*/}
-        <button  style={props.style} onClick= {props.clicked}>Toggle Person Handler</button>
-    </div>
-);
+    <button  style={props.style} onClick= {props.clicked}>Toggle Person Handler</button>
+    </Aux>
+    );
 };
 
 export default cockpit;
