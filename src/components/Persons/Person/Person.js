@@ -3,6 +3,8 @@
  */
 import React,{Component} from 'react';
 import './Person.css';
+import withClass from '../../../hoc/withClass';
+import Aux from '../../../hoc/Auxiliary';
 
 class Person extends Component{
     constructor(props){
@@ -18,11 +20,11 @@ class Person extends Component{
     render(){
         console.log('[Person.js] inside render');
         return(
-            <div className="Person">
+            <Aux>
                 <p onClick={this.props.click}>i am a {this.props.name} and age:{this.props.age}</p>
                 <p>{this.props.children}</p>
                 <input type="text" onChange={this.props.changed} value={this.props.name} />
-            </div>
+            </Aux>
         );
 
         // return(
@@ -34,6 +36,6 @@ class Person extends Component{
         // );
     }
 };
-export default Person;
+export default withClass(Person,"Person");
 
 
