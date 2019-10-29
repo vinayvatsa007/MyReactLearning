@@ -3,6 +3,7 @@
  */
 import React,{Component} from 'react';
 import './Person.css';
+import WithClass from '../../../hoc/WithClass';
 
 class Person extends Component{
     constructor(props){
@@ -17,12 +18,13 @@ class Person extends Component{
     }
     render(){
         console.log('[Person.js] inside render');
+        // wrap with custom common componet <WithClass> instead of div which will wrap it with div for us
         return(
-            <div className="Person">
+            <WithClass classes="Person">
                 <p onClick={this.props.click}>i am a {this.props.name} and age:{this.props.age}</p>
                 <p>{this.props.children}</p>
                 <input type="text" onChange={this.props.changed} value={this.props.name} />
-            </div>
+            </WithClass>
         );
 
         // return(
