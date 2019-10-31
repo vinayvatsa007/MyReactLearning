@@ -42,6 +42,7 @@ class Persons extends Component {
                            gender={person.gender}
                            click={() => this.props.clicked(index)}
                            changed={(event) => this.props.changed(event, person.id)}
+                           position={index}
             />
         });
     }
